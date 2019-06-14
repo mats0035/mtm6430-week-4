@@ -1,22 +1,35 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <el-button type="primary" @click="openDialog = true">Welcome</el-button>
+    <el-dialog :visible.sync="openDialog">
+      <div>
+        <input type="text" v-model="sendTreat">
+      </div>
+      <HelloWorld msg="My First App"/>
+      <Test :treat="sendTreat"/>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
-
+import Test from "./components/Test.vue";
 export default {
   name: "app",
   components: {
-    HelloWorld
+    HelloWorld,
+    Test
+  },
+  data: function() {
+    return {
+      sendTreat: "Raw Hide",
+      openDialog: false
+    };
   }
 };
 </script>
 
-<style lang="scss">
+<style>
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
